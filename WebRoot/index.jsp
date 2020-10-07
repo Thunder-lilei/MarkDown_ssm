@@ -27,7 +27,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <input type="submit" value="提交" onclick="tijiao()"/>
             <div id="test-editormd">
                 <textarea style="display:none;" class="editormd-html-textarea" id="editormd"></textarea>
-				<textarea class="editormd-html-textarea" name="text" id="editormdhtml"></textarea>
+								<textarea class="editormd-html-textarea" name="text" id="editormdhtml"></textarea>
             </div>
             
         </div>
@@ -68,6 +68,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             		  dataType:'text',
             		  success: function(data){
             		  	alert(data);
+            		  	document.getElementById("myhtml").innerHTML=data;
             		  },
             		  type:'post',
             		  url:'<%=basePath%>TextSvl'
@@ -75,6 +76,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             	);
             }
         </script>
-
+				<div id="myhtml">
+					
+				</div>
   </body>
 </html>

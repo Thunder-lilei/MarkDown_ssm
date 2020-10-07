@@ -37,8 +37,10 @@ public class PicSvl extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		SmartUpload smu = new SmartUpload();
-		String rootPath = request.getSession().getServletContext().getRealPath("/resources/upload/pic");
-		java.io.File filePath = new java.io.File(rootPath);
+//		String rootPath = request.getSession().getServletContext().getRealPath("/img");
+		String Path = "C:\\Users\\lilei\\eclipse-workspace\\MarkDown\\WebRoot\\img";
+		System.out.println("地址:"+Path);
+		java.io.File filePath = new java.io.File(Path);
 		if(!filePath.exists()){
 			filePath.mkdirs();   //创建文件目录
 		}
@@ -50,13 +52,14 @@ public class PicSvl extends HttpServlet {
 			smu.upload();
 			for(int i = 0; i < smu.getFiles().getCount(); i++){
 				File file = smu.getFiles().getFile(i);
-				java.io.File realfile = new java.io.File(rootPath+"/"+file.getFileName());
+				java.io.File realfile = new java.io.File(Path+"/"+file.getFileName());
 				file.saveAs(realfile.toString());
-				String path = request.getContextPath();
-				String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-				//System.out.println(basePath+"resources/upload/pic/"+file.getFilePathName());
+//				String path = request.getContextPath();
+//				String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+//				System.out.println(basePath+"img/"+file.getFilePathName());
 				//返回json串  url作为图片的地址
-				response.getWriter().write("{\"success\":1,\"messgae\":\"upload successful\",\"url\":\""+basePath+"resources/upload/pic/"+file.getFilePathName()+"\"}");
+//				response.sendRedirect("image.html");
+				response.getWriter().write("{\"success\":1,\"messgae\":\"upload successful\",\"url\":\""+"img/"+file.getFilePathName()+"\"}");
 			}
 		} catch (SmartUploadException e) {
 			response.getWriter().write("{\"success\":0}");

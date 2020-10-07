@@ -53,7 +53,7 @@ public class TextSvl extends HttpServlet {
 		String text = request.getParameter("text");
 		System.out.println(text);
 		response.setCharacterEncoding("utf-8");
-		response.getWriter().write("上传成功");
+		response.getWriter().write(text);
 	}
 
 	/**
